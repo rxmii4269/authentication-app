@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply dark:bg-black-300;
+}
+
+.card {
+  @apply border border-gray-300 w-96 rounded-xl py-10 px-10 dark:bg-black-300 dark:text-white;
+  &-header {
+    @apply font-semibold text-lg max-w-xs;
+    & .title,
+    .subtitle {
+      @apply max-w-xs my-3;
+    }
+    & .subtitle {
+      @apply font-normal text-base;
+    }
+  }
+  &-logo {
+    @apply mb-2;
+    @media (prefers-color-scheme: dark) {
+      &-light {
+        display: none;
+      }
+      &-dark {
+        display: block;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      &-light {
+        display: block;
+      }
+      &-dark {
+        display: none;
+      }
+    }
+  }
+  &-body {
+    @apply flex flex-col;
+    & form {
+      @apply flex flex-col;
+    }
+    & input {
+      @apply border border-gray-300 rounded-lg p-2 text-gray-400 my-3 dark:bg-black-300;
+    }
+  }
+  &-error {
+    @apply w-full text-red-600 bg-red-100 rounded-lg flex flex-col flex-wrap flex-1 break-words;
+    p {
+      @apply max-w-xs mx-6 mb-6;
+    }
+  }
+  &-footer {
+    @apply text-gray-400 text-center text-sm;
+    a {
+      @apply text-blue-500;
+    }
+  }
+  .close-btn {
+    @apply box-content w-4 h-4 text-gray-700 self-end p-2 opacity-50;
+    background: transparent
+      url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+      center/1em auto no-repeat;
+    span {
+    }
+  }
+  .login-btn {
+    @apply bg-blue-500 text-white font-semibold rounded-lg py-1.5;
+  }
+  .divider {
+    @apply text-gray-400 text-center text-sm mt-6 mb-4;
+  }
+  .social {
+    &-btns {
+      @apply flex flex-row space-x-4 justify-center my-5;
+    }
+    &-login {
+      @apply cursor-pointer;
+    }
+  }
+}
+.footer {
+  @apply flex flex-row justify-between;
+  p {
+    @apply text-sm text-gray-400;
+  }
+  span {
+    @apply underline font-semibold;
+  }
+}
