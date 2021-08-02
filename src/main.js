@@ -11,10 +11,18 @@ import {
   faUserCircle,
   faUserFriends,
   faSignOutAlt,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faSortUp, faSortDown, faUserCircle, faUserFriends, faSignOutAlt);
+library.add(
+  faSortUp,
+  faSortDown,
+  faUserCircle,
+  faUserFriends,
+  faSignOutAlt,
+  faChevronLeft
+);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
@@ -22,6 +30,7 @@ Vue.config.productionTip = false;
 
 auth.onAuthStateChanged((user) => {
   store.dispatch("fetchUser", user);
+  store.dispatch("bindUserRef");
   let app;
 
   if (!app) {
