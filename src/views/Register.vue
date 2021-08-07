@@ -105,11 +105,12 @@ export default {
     },
     async submit() {
       try {
-        await auth.createUserWithEmailAndPassword(
+        const { user } = await auth.createUserWithEmailAndPassword(
           this.form.email,
           this.form.password
         );
-        this.$router.replace({ name: "Login" });
+        await this.$store.dispatch("addUser", user);
+        this.$router.replace({ name: "Dashboard" });
       } catch (err) {
         this.error = err.message;
       }
@@ -117,7 +118,9 @@ export default {
     async continueGoogle() {
       try {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
-        await auth.signInWithPopup(googleProvider);
+        const { user } = await auth.signInWithPopup(googleProvider);
+        await this.$store.dispatch("addUser", user);
+        this.$router.replace({ name: "Dashboard" });
       } catch (error) {
         this.error = error.message;
       }
@@ -125,7 +128,9 @@ export default {
     async continueFacebook() {
       try {
         const facebookProvider = new firebase.auth.FacebookAuthProvider();
-        await auth.signInWithPopup(facebookProvider);
+        const { user } = await auth.signInWithPopup(facebookProvider);
+        await this.$store.dispatch("addUser", user);
+        this.$router.replace({ name: "Dashboard" });
       } catch (error) {
         this.error = error.message;
       }
@@ -133,7 +138,9 @@ export default {
     async continueTwitter() {
       try {
         const twitterProvider = new firebase.auth.TwitterAuthProvider();
-        await auth.signInWithPopup(twitterProvider);
+        const { user } = await auth.signInWithPopup(twitterProvider);
+        await this.$store.dispatch("addUser", user);
+        this.$router.replace({ name: "Dashboard" });
       } catch (error) {
         this.error = error.message;
       }
@@ -141,7 +148,9 @@ export default {
     async continueGithub() {
       try {
         const githubProvider = new firebase.auth.GithubAuthProvider();
-        await auth.signInWithPopup(githubProvider);
+        const { user } = await auth.signInWithPopup(githubProvider);
+        await this.$store.dispatch("addUser", user);
+        this.$router.replace({ name: "Dashboard" });
       } catch (error) {
         this.error = error.message;
       }

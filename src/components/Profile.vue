@@ -16,7 +16,7 @@
           alt="profile picture"
           height="65"
           width="65"
-          class="right"
+          class="right h-16 w-16"
         />
       </div>
       <div class="card-section">
@@ -25,11 +25,11 @@
       </div>
       <div class="card-section">
         <h3>Bio</h3>
-        <p class="right">{{ userData.bio }}</p>
+        <p class="right">{{ userInfo.bio }}</p>
       </div>
       <div class="card-section">
         <h3>Phone</h3>
-        <p class="right">{{ userData.phone }}</p>
+        <p class="right">{{ userInfo.phoneNumber }}</p>
       </div>
       <div class="card-section">
         <h3>Email</h3>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     userData: {
@@ -55,6 +56,9 @@ export default {
     return {
       edit: false,
     };
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
   },
   methods: {
     editProfile() {
@@ -84,9 +88,9 @@ export default {
     @apply divide-y divide-gray-300;
   }
   &-section {
-    @apply flex items-center justify-center  py-6;
+    @apply flex items-center justify-center py-6 px-8;
     & h3 {
-      @apply uppercase text-gray-300 font-semibold text-sm w-56 ml-8;
+      @apply uppercase text-gray-300 font-semibold text-sm w-56;
     }
     & .right {
       @apply flex-initial mr-auto rounded-md;

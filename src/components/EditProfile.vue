@@ -20,13 +20,24 @@
       <div class="card-body">
         <div class="card-section flex flex-row items-center">
           <img
-            class="rounded-md"
-            :src="userInfo.profilePicture"
+            class="rounded-md h-16 w-16"
+            :src="showPreview ? previewImage : userInfo.profilePicture"
             height="65"
             width="65"
             alt="profile picture"
           />
-          <h3 role="button">Change Photo</h3>
+          <h3 role="button" @click="uploadImage">
+            Change Photo
+            <input
+              ref="fileUpload"
+              type="file"
+              name="fileUpload"
+              id="fileUpload"
+              accept="image/*"
+              hidden
+              @change="acceptImage"
+            />
+          </h3>
         </div>
         <div class="card-section">
           <form action="#" @submit.prevent="saveProfile" class="form">
@@ -49,9 +60,9 @@
                 id="bio"
                 cols="20"
                 rows="3"
-                v-model="userInfo.bio"
+                :value="profileInfo.bio"
+                @input="updateBio($event.target.value)"
                 placeholder="Enter your bio..."
-                required
               ></textarea>
             </div>
             <div class="form-group">
@@ -60,9 +71,9 @@
                 type="text"
                 name="Phone"
                 id="phone"
-                v-model="userInfo.phone"
+                :value="profileInfo.phoneNumber"
+                @input="updatePhoneNumber($event.target.value)"
                 placeholder="Enter your phone..."
-                required
               />
             </div>
             <div class="form-group">
@@ -84,7 +95,6 @@
                 id="password"
                 v-model="userInfo.password"
                 placeholder="Enter your new password..."
-                required
               />
             </div>
             <button class="form-btn" type="submit">Save</button>
@@ -96,6 +106,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     userData: {
@@ -105,18 +116,43 @@ export default {
   },
   data() {
     return {
-      userInfo: { ...this.userData },
+      userInfo: { ...this.userData, bio: "", password: "", phone: "" },
+      previewImage: null,
+      showPreview: false,
     };
   },
+  computed: {
+    ...mapGetters({ profileInfo: "userInfo" }),
+  },
   methods: {
+    updateBio(value) {
+      this.userInfo.bio = value;
+    },
+    updatePhoneNumber(value) {
+      this.userInfo.phone = value;
+    },
     cancelEditing() {
       this.$emit("cancelEditingProfile", false);
     },
-    saveProfile() {
-      // console.log(this.userInfo);
-      this.$store.dispatch("saveUser", this.userInfo);
+    async saveProfile() {
+      await this.$store.dispatch("updateUserInfo", this.userInfo);
+      this.$emit("saveProfile", false);
     },
-    submit() {},
+    uploadImage() {
+      this.$refs.fileUpload.click();
+    },
+    acceptImage() {
+      const self = this;
+      let uploadedImage = this.$refs.fileUpload.files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        self.previewImage = reader.result;
+        self.showPreview = true;
+      });
+      reader.readAsDataURL(uploadedImage);
+      this.userInfo.profilePicture = uploadedImage;
+    },
   },
 };
 </script>

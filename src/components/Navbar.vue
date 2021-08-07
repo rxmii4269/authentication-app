@@ -7,7 +7,7 @@
       width="140"
       height="140"
     />
-    <nav class="navbar-nav">
+    <nav v-if="user && user.data" class="navbar-nav">
       <div class="nav-item dropdown">
         <div class="dropdown-toggle" @click="toggleMenu">
           <img
@@ -89,7 +89,7 @@ export default {
   @apply my-3 flex flex-row justify-between mx-6;
 
   &-img {
-    @apply rounded-md;
+    @apply rounded-md h-10 w-10;
   }
 
   & .dropdown {
@@ -97,6 +97,7 @@ export default {
       @apply flex justify-between items-center space-x-3 font-semibold p-2 rounded hover:bg-gray-200 transition-colors duration-300 ease-in-out cursor-pointer;
     }
     &-menu {
+      @apply bg-white;
       &.openMenu {
         @apply visible;
       }

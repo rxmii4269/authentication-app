@@ -11,6 +11,7 @@
       <EditProfile
         v-else
         @cancelEditingProfile="toggleEditProfile($event)"
+        @saveProfile="toggleSaveProfile($event)"
         :userData="user.data"
       />
       <div class="footer">
@@ -48,6 +49,13 @@ export default {
   methods: {
     toggleEditProfile(isEditing) {
       this.isEditing = isEditing;
+    },
+    toggleSaveProfile(value) {
+      this.isEditing = value;
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
     },
   },
 };
