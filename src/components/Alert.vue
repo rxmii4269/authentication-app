@@ -1,5 +1,5 @@
 <template>
-  <div :class="alertClass" v-show="show && showAlert">
+  <div :class="alertClass" v-show="show">
     <span class="alert-icon">
       <font-awesome-icon v-if="icon" :icon="icon" />
     </span>
@@ -13,13 +13,20 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { EventBus } from "@/event-bus";
+
 export default {
   data() {
-    return {};
+    return {
+      show: false,
+      alertType: null,
+      alertMessage: null,
+    };
+  },
+  created() {
+    EventBus.$on("showAlert", this.alertHandler);
   },
   computed: {
-    ...mapGetters(["alertType", "alertMessage", "showAlert"]),
     alertClass() {
       if (this.alertType) {
         return "alert-" + this.alertType;
@@ -46,22 +53,19 @@ export default {
       }
       return icon;
     },
-    show: {
-      get: function () {
-        if (this.showAlert) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-      set: function (value) {
-        this.$store.commit("TOGGLE_ALERT", value);
-      },
-    },
   },
   methods: {
     close() {
       this.show = false;
+    },
+    alertHandler(value) {
+      this.alertType = value[0];
+      this.alertMessage = value[1];
+      this.show = value[2];
+
+      setTimeout(() => {
+        this.close();
+      }, 3000);
     },
   },
 };

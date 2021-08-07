@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { vuexfireMutations, firestoreAction, firebaseAction } from "vuexfire";
+import { EventBus } from "../event-bus";
 import { auth, storage, db, firebase } from "../firebase";
 import router from "../router";
 Vue.use(Vuex);
@@ -17,9 +18,6 @@ export default new Vuex.Store({
       provider: null,
     },
     userInfo: null,
-    alertType: null,
-    alertMessage: null,
-    showAlert: false,
   },
   getters: {
     user(state) {
@@ -27,15 +25,6 @@ export default new Vuex.Store({
     },
     userInfo(state) {
       return state.userInfo;
-    },
-    alertType(state) {
-      return state.alertType;
-    },
-    alertMessage(state) {
-      return state.alertMessage;
-    },
-    showAlert(state) {
-      return state.showAlert;
     },
   },
   mutations: {
@@ -133,13 +122,13 @@ export default new Vuex.Store({
           displayName: userData.displayName,
         });
         context.dispatch("fetchUser", auth.currentUser);
-        context.dispatch("showAlert", [
+        EventBus.$emit("showAlert", [
           "success",
-          "Profile Saved Successfuly",
+          "Profile Saved Successfully",
           true,
         ]);
       } catch (error) {
-        context.dispatch("showAlert", ["error", "Something went Wrong!", true]);
+        EventBus.$emit("showAlert", ["error", "Something went Wrong!", true]);
       }
     }),
 
@@ -173,16 +162,13 @@ export default new Vuex.Store({
           }
         }
       } catch (error) {
-        context.dispatch("showAlert", [
+        EventBus.$emit("showAlert", [
           "danger",
           "Something went wrong!",
           "true",
         ]);
       }
     }),
-    showAlert({ commit }, data) {
-      commit("SET_ALERT_DATA", data);
-    },
   },
   modules: {},
 });

@@ -53,9 +53,9 @@ export default {
     toggleSaveProfile(value) {
       this.isEditing = value;
 
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 2000);
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 2000);
     },
   },
 };
