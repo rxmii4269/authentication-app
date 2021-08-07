@@ -15,6 +15,8 @@ import {
   faCheckCircle,
   faTimesCircle,
   faExclamationTriangle,
+  faEnvelope,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -27,7 +29,9 @@ library.add(
   faChevronLeft,
   faTimesCircle,
   faCheckCircle,
-  faExclamationTriangle
+  faExclamationTriangle,
+  faEnvelope,
+  faLock
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 
 html,
 body {
@@ -46,9 +45,14 @@ body {
     @apply flex flex-col;
     & form {
       @apply flex flex-col;
-    }
-    & input {
-      @apply border border-gray-300 rounded-lg p-2 text-gray-400 my-3 dark:bg-black-300;
+      & .form {
+        &-grp {
+          @apply flex items-center border border-gray-300 rounded-lg p-2 text-gray-400 mb-3 dark:bg-black-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent transition-colors duration-300 ease-in-out;
+          & input {
+            @apply flex-1 outline-none pl-2;
+          }
+        }
+      }
     }
   }
   &-error {

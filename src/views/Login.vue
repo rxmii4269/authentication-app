@@ -17,39 +17,42 @@
           class="card-logo-dark"
         />
         <p class="title">Login</p>
-        <!-- <p class="title">Join thousands of learners from around the world</p>
-        <p class="subtitle">
-          Master web development by making real-live projects. There are
-          multiple paths for you to choose.
-        </p> -->
       </div>
       <div class="card-body">
         <div v-if="error" class="card-error">
           <button class="close-btn" @click="dismiss"></button>
           <p>{{ error }}</p>
         </div>
-        <form action="#" @submit.prevent="submit">
-          <input
-            type="email"
-            name="Email"
-            id="email"
-            aria-label="Email"
-            placeholder="Email"
-            v-model="form.email"
-            autofocus
-            required
-            autocomplete="email"
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            v-model="form.password"
-            autofocus
-            required
-            autocomplete="current-password"
-          />
+        <form action="#" @submit.prevent="submit" class="form">
+          <div class="form-grp">
+            <font-awesome-icon icon="envelope" />
+            <input
+              type="email"
+              name="Email"
+              id="email"
+              aria-label="Email"
+              placeholder="Email"
+              v-model="form.email"
+              autofocus
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-grp">
+            <font-awesome-icon icon="lock" />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              v-model="form.password"
+              autofocus
+              required
+              autocomplete="current-password"
+            />
+          </div>
+
           <button class="login-btn" type="submit">Login</button>
         </form>
         <p class="divider">or continue with these social profile</p>
