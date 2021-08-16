@@ -31,7 +31,7 @@
         <h3>Phone</h3>
         <p class="right">{{ userInfo.phoneNumber }}</p>
       </div>
-      <div class="card-section">
+      <div class="card-section email">
         <h3>Email</h3>
         <p class="right">{{ userData.email }}</p>
       </div>
@@ -88,7 +88,13 @@ export default {
     @apply divide-y divide-gray-300;
   }
   &-section {
-    @apply flex items-center justify-center py-6 px-8;
+    @apply flex items-center justify-between py-6 px-8;
+    & p {
+      @apply text-right;
+    }
+    &.email {
+      @apply pr-2;
+    }
     & h3 {
       @apply uppercase text-gray-300 font-semibold text-sm w-56;
     }

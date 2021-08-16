@@ -11,7 +11,7 @@ body {
 }
 
 .card {
-  @apply border border-gray-300 w-96 rounded-xl py-10 px-10 dark:bg-black-300 dark:text-white;
+  @apply border-0 md:border lg:border xl:border 2xl:border  md:border-gray-300 xl:border-gray-300 2xl:border-gray-300 md:w-80 xl:w-80 2xl:w-80 rounded-xl py-10 px-2 md:px-10 lg:px-10 xl:px-10 2xl:px-10 dark:bg-black-300 dark:text-white;
   &-header {
     @apply font-semibold text-lg max-w-xs;
     & .title,
@@ -91,7 +91,7 @@ body {
   }
 }
 .footer {
-  @apply flex flex-row justify-between;
+  @apply flex flex-row justify-between mx-4 md:mx-0 lg:mx-0 xl:mx-0 2xl:mx-0;
   p {
     @apply text-sm text-gray-400;
   }

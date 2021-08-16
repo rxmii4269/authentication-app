@@ -2,7 +2,7 @@
   <div v-if="user" class="dashboard">
     <h1>Personal Info</h1>
     <h2>Basic info, like your name and photo</h2>
-    <div class="w-6/12">
+    <div class="w-full md:w-6/12 xl:w-6/12 2xl:w-6/12">
       <Profile
         v-if="!isEditing"
         @editProfile="toggleEditProfile($event)"

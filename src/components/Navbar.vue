@@ -17,13 +17,9 @@
             height="40"
             width="40"
           />
-          <p>{{ user.data.displayName }}</p>
-
-          <!-- <font-awesome-icon
-            v-if="isOpen"
-            icon="sort-up"
-            class="dropdown-toggle-icon"
-          /> -->
+          <p class="hidden md:block xl:block 2xl:block">
+            {{ user.data.displayName }}
+          </p>
           <font-awesome-icon
             :icon="isOpen ? 'sort-up' : 'sort-down'"
             class="dropdown-toggle-icon"
@@ -95,6 +91,9 @@ export default {
   & .dropdown {
     &-toggle {
       @apply flex justify-between items-center space-x-3 font-semibold p-2 rounded hover:bg-gray-200 transition-colors duration-300 ease-in-out cursor-pointer;
+      &-icon {
+        @apply hidden md:block xl:block 2xl:block;
+      }
     }
     &-menu {
       @apply bg-white;
