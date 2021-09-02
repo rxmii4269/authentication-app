@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from "vue";
 import Vuex from "vuex";
 import { vuexfireMutations, firestoreAction, firebaseAction } from "vuexfire";
@@ -92,7 +93,7 @@ export default new Vuex.Store({
         }
         if (
           userData.profilePicture &&
-          urlRegex.test(userData.profilePicture) === false
+          urlRegex.test(userData.profilePicture) !== true
         ) {
           storage
             .ref("user-photos/" + userData.id)
