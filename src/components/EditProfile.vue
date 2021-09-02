@@ -188,7 +188,7 @@ export default {
           @apply text-sm;
         }
         & input {
-          @apply my-0 placeholder-gray-400 text-current focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ease-in-out;
+          @apply my-0 border border-gray-300 rounded-lg p-2 placeholder-gray-400 text-current focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ease-in-out;
         }
         & textarea {
           @apply rounded-lg border border-gray-300 p-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ease-in-out;
