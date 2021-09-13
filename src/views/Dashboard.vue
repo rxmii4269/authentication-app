@@ -65,10 +65,10 @@ export default {
 .dashboard {
   @apply flex flex-col justify-center items-center;
   & h1 {
-    @apply text-3xl font-semibold;
+    @apply text-3xl font-semibold dark:text-white;
   }
   & h2 {
-    @apply text-sm font-light;
+    @apply text-sm font-light dark:text-white;
   }
 
   .footer {

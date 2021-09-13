@@ -2,7 +2,11 @@
   <div class="navbar">
     <img
       class="nav-logo"
-      src="@/assets/img/devchallenges.svg"
+      :src="
+        isDarkMode
+          ? require('@/assets/img/devchallenges-light.svg')
+          : require('@/assets/img/devchallenges.svg')
+      "
       alt="navbar logo"
       width="140"
       height="140"
@@ -17,7 +21,7 @@
             height="40"
             width="40"
           />
-          <p class="hidden md:block xl:block 2xl:block">
+          <p class="hidden md:block xl:block 2xl:block dark:text-white">
             {{ user.data.displayName }}
           </p>
           <font-awesome-icon
@@ -67,6 +71,11 @@ export default {
   },
   computed: {
     ...mapGetters(["user"]),
+    isDarkMode() {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? true
+        : false;
+    },
   },
   methods: {
     toggleMenu() {
@@ -90,19 +99,19 @@ export default {
 
   & .dropdown {
     &-toggle {
-      @apply flex justify-between items-center space-x-3 font-semibold p-2 rounded hover:bg-gray-200 transition-colors duration-300 ease-in-out cursor-pointer;
+      @apply flex justify-between items-center space-x-3 font-semibold p-2 rounded hover:bg-gray-200 transition-colors duration-300 ease-in-out cursor-pointer dark:hover:bg-gray-600;
       &-icon {
-        @apply hidden md:block xl:block 2xl:block;
+        @apply hidden md:block xl:block 2xl:block dark:text-white;
       }
     }
     &-menu {
-      @apply bg-white;
+      @apply bg-white dark:bg-black-300 dark:text-white;
       &.openMenu {
         @apply visible;
       }
       @apply px-3 py-2.5 border border-gray-200 rounded-lg shadow absolute w-56 right-6 top-20 invisible transition duration-500 ease-in-out;
       &-item {
-        @apply rounded-lg px-3 py-1 hover:bg-gray-100 transition-colors duration-300 ease-in-out font-medium flex items-center space-x-3 my-2;
+        @apply rounded-lg px-3 py-1 hover:bg-gray-100 transition-colors duration-300 ease-in-out font-medium flex items-center space-x-3 my-2 dark:hover:bg-gray-600;
         * {
           @apply my-2;
         }
